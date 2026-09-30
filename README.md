@@ -23,6 +23,14 @@ and an [interactive dashboard](output/dashboard.html).
 
 ![v1 vs v2](output/figures/v1_vs_v2_v2_betaneutral.png)
 
+
+## v3 update (October 2026): 35 years, survivorship-free
+
+Re-run on CRSP/Compustat via WRDS with true point-in-time S&P 500 membership and delisting returns, Feb 1990 – Dec 2024:
+**+1.0%/yr excess, 2.3% tracking error, IR 0.38 (t = 2.25, 90% bootstrap CI [0.07, 0.65])**. The premium came from the 1990s (IR 1.1) and 2000s (0.49);
+since 2010 it has been flat to negative. Survivorship bias in v2 inflated both benchmark and strategy by ~1.4%/yr and left the relative result
+almost unchanged. Full note: [docs/v3_wrds.md](docs/v3_wrds.md). Raw WRDS data are not redistributed.
+
 ## The research story, in order
 
 **v1** scored four factors (value, momentum, quality, low volatility) and tilted cap weights by `exp(score)` with sector neutrality, a 5% name cap

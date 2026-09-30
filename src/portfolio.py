@@ -31,7 +31,7 @@ def sector_rescale(w, bench, sectors):
     w = w * sectors.map(scale).fillna(0).values
     return w / w.sum()
 
-def beta_match(w, bench, beta_row, sectors, cap=MAX_WEIGHT, iters=3):
+def beta_match(w, bench, beta_row, sectors, cap=MAX_WEIGHT, iters=2):
     """Re-tilt weights by exp(gamma*(beta-1)) so ex-ante portfolio beta equals the benchmark's,
     re-imposing sector neutrality and the name cap. gamma found by bisection."""
     b = beta_row.reindex(w.index).fillna(1.0)
@@ -41,7 +41,7 @@ def beta_match(w, bench, beta_row, sectors, cap=MAX_WEIGHT, iters=3):
             x = w * np.exp(g * (b - 1)); x = apply_cap(sector_rescale(x / x.sum(), bench, sectors), cap)
             return (x * b).sum() - target, x
         lo, hi = -8.0, 8.0
-        for _ in range(40):
+        for _ in range(22):
             mid = (lo + hi) / 2
             f, _x = pbeta(mid)
             if f > 0: hi = mid
